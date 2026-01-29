@@ -123,7 +123,9 @@ export const useSubscription = () => {
                 { transaction: tx },
                 {
                     onSuccess: (result) => {
-                        const statusVal = result.effects?.status as any;
+                        // @ts-ignore
+                        const effects = result.effects as any;
+                        const statusVal = effects?.status;
                         const isFailure = statusVal === 'failure' || statusVal?.status === 'failure';
 
                         if (isFailure) {
