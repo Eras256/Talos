@@ -85,10 +85,18 @@ async function executeStrategy(job: AgentJob) {
         });
 
         // 2. EXECUTE SWAP (THE MEAT)
+        // 2. EXECUTE SWAP (THE MEAT)
         if (TESTNET_MODE) {
-            // MOCK: Do nothing. Holding the coin is enough to repay it.
-            // We simulate "profit" by just assuming we have enough (or if strictly required, we'd need to mint more coin).
-            console.log(`[TESTNET] Skipping real swap. Returning funds directly.`);
+            // "Proof of Life" Logic for Testnet:
+            // Simulate complex DeFi path by splitting and merging coins.
+            // This generates "Move Events" and computation on the explorer.
+            console.log(`[TESTNET] Simulating DeFi Strategy execution...`);
+
+            // Simulation: Split 10% of funds (representing a swap input)
+            const [simulatedSwapInput] = tx.splitCoins(borrowedCoin, [tx.pure.u64(AMOUNT_TO_BORROW / 10n)]);
+
+            // "Swap" simulation (Merge it back)
+            tx.mergeCoins(borrowedCoin, [simulatedSwapInput]);
         } else {
             // MAINNET: Inject Aggregator PTB commands here
             console.log("[MAINNET] Attempting real swap...");

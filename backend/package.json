@@ -8,6 +8,7 @@
         "dev": "nodemon src/worker.ts"
     },
     "dependencies": {
+        "@cetusprotocol/cetus-sui-clmm-sdk": "^5.4.0",
         "@supabase/supabase-js": "^2.93.1"
     },
     "devDependencies": {
