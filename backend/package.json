@@ -1,0 +1,20 @@
+{
+    "name": "talos-worker",
+    "version": "1.0.0",
+    "description": "Off-chain Execution Worker for Talos AgentFi",
+    "main": "src/worker.ts",
+    "scripts": {
+        "start": "ts-node src/worker.ts",
+        "dev": "nodemon src/worker.ts"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.93.1"
+    },
+    "devDependencies": {
+        "@mysten/sui": "^1.45.2",
+        "@types/node": "^20.19.30",
+        "dotenv": "^16.4.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}

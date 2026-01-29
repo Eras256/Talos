@@ -1,0 +1,13 @@
+{
+    "testnet": {
+        "packageId": "0x429a4f9398dc763f87bed042036e3c8569d57561ab9a4982274afb17dfcbd5a1",
+        "subscriptionRegistryId": "0x35f278cb55f54c70faeb486c6adf35a9ab222005153cd3b1010de90f9f01ea99",
+        "mockUsdcTreasuryId": "0xb3f6bc067b668017ea53a6a8d18c63e2a322a0a244ba72f5e7b1742dc5c0e3d5",
+        "adminCapId": "0x893a43df6b2bc1840cd8beb18e1f00bdb74d4909b78a04a36f17adab67dfd65a",
+        "modules": {
+            "subscription": "subscription",
+            "vault": "vault",
+            "mockUsdc": "mock_usdc"
+        }
+    }
+}
