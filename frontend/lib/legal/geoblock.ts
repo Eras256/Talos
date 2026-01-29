@@ -1,4 +1,5 @@
-import { headers } from "next/headers";
+// Headers import removed to support client -side usage
+
 
 const BLOCKED_COUNTRIES = ["US", "CN", "RU", "KP", "IR"];
 
