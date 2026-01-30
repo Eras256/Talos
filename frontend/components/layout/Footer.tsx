@@ -89,7 +89,12 @@ export default function Footer() {
                             © 2026 Talos Systems. Made by Vaiosx. All rights reserved.
                         </p>
 
+
                         <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-2 px-3 py-1 rounded border border-purple-500/20 bg-purple-500/5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400">Audit Status:</span>
+                                <span className="text-[10px] font-bold text-white shadow-purple-500 animate-pulse">PENDING</span>
+                            </div>
                             <div className="flex items-center gap-2 text-xs text-yellow-500/80">
                                 <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
                                 Mainnet Coming Soon
@@ -99,6 +104,7 @@ export default function Footer() {
                                 Built on Sui
                             </a>
                         </div>
+
                     </div>
 
                 </div>
