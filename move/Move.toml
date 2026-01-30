@@ -10,3 +10,5 @@ Wormhole = { git = "https://github.com/wormhole-foundation/wormhole.git", subdir
 
 [addresses]
 talos = "0x0"
+pyth = "0x00b53b0f4174108627fbee72e2498b58d6a2714cded53fac537034c220d26302" # Pyth Testnet (Verify current)
+wormhole = "0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790" # Wormhole Testnet
