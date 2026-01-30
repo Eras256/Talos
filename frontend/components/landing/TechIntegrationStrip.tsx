@@ -2,7 +2,7 @@ import { Activity, Network, Radio, Zap } from "lucide-react";
 
 export default function TechIntegrationStrip() {
     return (
-        <div className="w-full border-y border-white/5 bg-black/40 backdrop-blur-md mt-24">
+        <div className="w-full border-y border-white/5 bg-black/40 backdrop-blur-md mt-12 md:mt-24">
             <div className="max-w-7xl mx-auto px-6 py-8">
                 <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-sm font-medium">
 

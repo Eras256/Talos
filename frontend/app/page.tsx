@@ -54,7 +54,7 @@ export default function Home() {
                         transition={{ delay: 0.2, duration: 0.5 }}
                         className="mb-8"
                     >
-                        <img src="/talos-logo.png" alt="Talos Protocol" className="w-24 h-auto" />
+                        <img src="/talos-logo.png" alt="Talos Protocol" className="w-20 md:w-24 h-auto" />
                     </motion.div>
 
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6 leading-tight">

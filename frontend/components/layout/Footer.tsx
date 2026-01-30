@@ -86,7 +86,7 @@ export default function Footer() {
                     {/* BOTTOM SECTION: Copyright & Badges */}
                     <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
                         <p className="text-xs text-white/30 text-center md:text-left">
-                            © 2026 Talos Systems. Made by Vaiosx. All rights reserved.
+                            © 2026 Talos Systems. Made by Vaiosx & M0nsxx & Maux. All rights reserved.
                         </p>
 
 
