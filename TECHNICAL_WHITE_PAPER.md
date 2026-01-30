@@ -1,5 +1,5 @@
 # 📜 TALOS PROTOCOL: TECHNICAL WHITE PAPER
-**Version 1.0.0 (Testnet Release)**
+**Version 1.1.0 (Testnet Release Candidate)**
 **Authors:** Vaiosx (Lead Architect), M0nsxx (Protocol Engineer)
 **Date:** January 2026
 
@@ -27,10 +27,10 @@ The system is composed of three distinct layers:
     *   **Proof of Life (Testnet)**: Simulates complex DeFi routing via split/merge operations to prove execution capability without liquidity.
 
 3.  **Frontend Interface (Next.js 16)**:
+    *   **Wallet Integration**: Native support for Sui Wallet, Suiet, etc., via `@mysten/dapp-kit` with custom address formatting.
     *   **Dashboard**: Real-time monitoring of Vaults.
-    *   **Studio**: No-code strategy configuration.
     *   **Analytics**: Live indexing of `SubscriptionRegistry` and on-chain activity.
-    *   **Security**: Geo-blocking compliant (OFAC) and wallet-based authentication.
+    *   **Compliance UI**: Dynamic Audit Status, Geo-blocking compliant (OFAC), and wallet-based authentication.
 
 ---
 
@@ -93,9 +93,17 @@ In Mainnet mode, the Worker connects to **Cetus Aggregator** and **DeepBook**:
 Instead of hardcoded mock data, the frontend now performs dynamic fetching:
 *   **Total Vaults**: Queried directly from `SubscriptionRegistry` on-chain state.
 *   **TVL**: Estimated based on live price feeds and vault balances.
-*   **Price Ticker**: SUI/USD price fetched via CoinGecko API (`SuiPriceTicker.tsx`).
+*   **Price Ticker**: SUI/USD price fetched via CoinGecko API (`SuiPriceTicker.tsx`) with fallback handling.
 
-### 5.2 Deployment Pipeline
+### 5.2 Wallet & Identity
+*   **Provider Stack**: Wrapped in `SuiClientProvider` and `WalletProvider` from `@mysten/dapp-kit`.
+*   **Custom Connector**: `WalletConnect.tsx` component replaces default buttons to provide granular control (Copy Address, Disconnect) and refined UI (Address truncation).
+
+### 5.3 Audit & Compliance UI
+*   **Status Indicators**: The Application Footer now broadcasts real-time Audit Status (currently **PENDING**) using neon-styled indicators.
+*   **Geo-Blocking**: Modules available for IP-based restriction (currently set to relaxed for Testnet accessibility).
+
+### 5.4 Deployment Pipeline
 *   **Hosting**: Vercel (Production optimized).
 *   **CI/CD**: Automatic builds via `git push`.
 *   **Security**: Environment variables (`NEXT_PUBLIC_NETWORK`) partition Testnet/Mainnet configs.
@@ -107,6 +115,7 @@ Instead of hardcoded mock data, the frontend now performs dynamic fetching:
 *   **Atomic**: Loss-making trades revert.
 *   **Frozen State**: User can call `emergency_shutdown` to revoke Agent access instantly.
 *   **Access Control**: Only `OwnerCap` can add/remove assets.
+*   **Repayment Logic**: Contract enforces `returned_val >= amount` allowing for break-even execution (critical for Testnet simulation).
 
 ---
 
