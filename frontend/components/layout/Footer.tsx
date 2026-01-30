@@ -90,19 +90,31 @@ export default function Footer() {
                         </p>
 
 
-                        <div className="flex items-center gap-6">
-                            <div className="flex items-center gap-2 px-3 py-1 rounded border border-purple-500/20 bg-purple-500/5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-                                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400">Audit Status:</span>
-                                <span className="text-[10px] font-bold text-white shadow-purple-500 animate-pulse">PENDING</span>
+                        <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 mt-4 md:mt-0">
+
+                            {/* NETWORK STATUS */}
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-sui-blue/20 bg-sui-blue/5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-sui-blue animate-pulse" />
+                                <span className="text-[10px] font-mono font-bold text-sui-blue uppercase tracking-wider">Net: Sui Testnet</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-yellow-500/80">
-                                <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
-                                Mainnet Coming Soon
+
+                            {/* ORACLE STATUS */}
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-purple-500/20 bg-purple-500/5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                                <span className="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-wider">Oracle: Pyth</span>
                             </div>
-                            <a href="https://sui.io" target="_blank" className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs hover:bg-blue-500/20 transition-colors">
-                                <Code className="w-3 h-3" />
-                                Built on Sui
-                            </a>
+
+                            {/* EXECUTION STATUS */}
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-green-500/20 bg-green-500/5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                                <span className="text-[10px] font-mono font-bold text-green-400 uppercase tracking-wider">Exec: 7K Aggregator</span>
+                            </div>
+
+                            {/* AUDIT STATUS */}
+                            <div className="flex items-center gap-2 px-3 py-1.5 rounded border border-orange-500/20 bg-orange-500/5">
+                                <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-wider">Audit: Pending</span>
+                            </div>
+
                         </div>
 
                     </div>
