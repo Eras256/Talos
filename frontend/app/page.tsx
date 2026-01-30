@@ -47,6 +47,15 @@ export default function Home() {
                         System Online :: Testnet v1.0
                     </div>
 
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="mb-8"
+                    >
+                        <img src="/talos-logo.png" alt="Talos Protocol" className="w-24 h-auto" />
+                    </motion.div>
+
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6 leading-tight">
                         DEPLOY <span className="text-sui-blue animate-pulse">AUTONOMOUS</span> <br />
                         CAPITAL AGENTS.
