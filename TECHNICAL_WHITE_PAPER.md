@@ -1,6 +1,6 @@
 # 📜 TALOS PROTOCOL: TECHNICAL WHITE PAPER
 **Version 2.0.0 (Production Ready)**
-**Authors:** Vaiosx (Lead Architect), M0nsxx (Protocol Engineer), Maux (Frontend Eng.) 
+**Authors:** Vaiosx (Lead Architect), M0nsxx (UX/UI), Maux (Growth)
 **Date:** January 2026
 
 ---
