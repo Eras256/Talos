@@ -6,6 +6,12 @@ module talos::vault {
     use sui::event;
     use sui::clock::{Clock};
     use talos::subscription::{Self, SubscriptionRegistry};
+    // use pyth::pyth::{Self, PriceIdentifier, PriceInfoObject}; // Uncomment when mainnet dependency is resolved
+    // use pyth::price_info;
+    // use pyth::i64;
+
+    // --- Oracle Config ---
+    // const MAX_AGE_SECS: u64 = 60; 
 
     // --- Error Codes ---
     const ENotOwner: u64 = 0;
