@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Shield, Zap, Cpu, Activity, Play, CheckCircle, Smartphone, Lock, Terminal } from "lucide-react";
 import TerminalWindow from "@/components/ui/TerminalWindow";
 import GlassCard from "@/components/ui/GlassCard";
+import TechIntegrationStrip from "@/components/landing/TechIntegrationStrip";
 
 const CODE_PREVIEW = `// TALOS_PROTOCOL_V1 //
 module talos::strategy {
@@ -130,6 +131,9 @@ export default function Home() {
                 </div>
 
             </div>
+
+            {/* STRIP: TECH INTEGRATION */}
+            <TechIntegrationStrip />
 
             {/* STRIP: STATS */}
             <div className="border-y border-white/5 bg-black/40 backdrop-blur mt-24">

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Plus, Coins, Activity, TrendingUp, Wallet, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { CURRENT_NETWORK } from "@/lib/contracts";
+import SystemStatus from "./SystemStatus";
 
 export default function VaultView() {
     const { deployVault, mintMockUSDC } = useTalos();
@@ -112,6 +113,11 @@ export default function VaultView() {
                         </div>
                     </motion.div>
                 ))}
+            </div>
+
+            {/* SYSTEM STATUS FOOTER */}
+            <div className="flex justify-center pt-10 pb-4 opacity-70 hover:opacity-100 transition-opacity">
+                <SystemStatus />
             </div>
         </div>
     );

@@ -90,25 +90,19 @@ export default function Footer() {
                         </p>
 
 
-                        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                            {/* TECH BADGES ROW */}
-                            <div className="flex items-center gap-3">
-                                {/* Badge 1: 7K */}
-                                <div className="flex items-center gap-2 px-2 py-1 rounded bg-white/5 border border-white/10">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]" />
-                                    <span className="text-[10px] font-mono text-white/50">Exec: <span className="text-white/80">7K Aggregator</span></span>
-                                </div>
-                                {/* Badge 2: Pyth */}
-                                <div className="flex items-center gap-2 px-2 py-1 rounded bg-white/5 border border-white/10">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_5px_#22c55e]" />
-                                    <span className="text-[10px] font-mono text-white/50">Oracle: <span className="text-white/80">Pyth</span></span>
-                                </div>
-                                {/* Badge 3: Network */}
-                                <div className="flex items-center gap-2 px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                                    <span className="text-[10px] font-mono text-blue-300">Sui Testnet</span>
-                                </div>
+                        <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-2 px-3 py-1 rounded border border-purple-500/20 bg-purple-500/5 shadow-[0_0_10px_rgba(168,85,247,0.3)]">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-purple-400">Audit Status:</span>
+                                <span className="text-[10px] font-bold text-white shadow-purple-500 animate-pulse">PENDING</span>
                             </div>
+                            <div className="flex items-center gap-2 text-xs text-yellow-500/80">
+                                <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
+                                Mainnet Coming Soon
+                            </div>
+                            <a href="https://sui.io" target="_blank" className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs hover:bg-blue-500/20 transition-colors">
+                                <Code className="w-3 h-3" />
+                                Built on Sui
+                            </a>
                         </div>
 
                     </div>
