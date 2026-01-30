@@ -1,125 +1,115 @@
-<div align="center">
-
-# ⚡ T A L O S · S Y S
-
-### The Non-Custodial Execution Runtime for AgentFi
-*Autonomous Capital Allocation on Sui Network*
-
-[Launch App](https://talos.sys) · [Documentation](https://docs.talos.sys) · [View Contract](https://suiexplorer.com)
+# 📜 TALOS PROTOCOL: TECHNICAL WHITE PAPER
+**Version 1.0.0 (Testnet Release)**
+**Authors:** Vaiosx (Lead Architect), M0nsxx (Protocol Engineer)
+**Date:** January 2026
 
 ---
 
-![Talos Banner](https://img.shields.io/badge/Status-Mainnet_Ready-00D26A?style=for-the-badge&logo=statuspage)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![Network](https://img.shields.io/badge/Network-SUI_Move-4DA2FF?style=for-the-badge&logo=sui)
+## 1. Abstract
+Talos is a **Non-Custodial Execution Runtime** for AgentFi on the Sui Network. It solves the critical trilemma of autonomous agents: **Security vs. Autonomy vs. Efficiency**.
+Unlike traditional bots that require private key custody, Talos utilizes a **Smart Vault Architecture** where the user retains ownership (`OwnerCap`) while delegating Granular Execution Rights (`AgentCap`) to an off-chain worker.
 
-</div>
+## 2. Architecture Overview
 
-## 🌌 The Narrative
-In a fragmented liquidity landscape, **Agility is Power**. 
-Traditional trading bots require you to surrender your private keys—a fatal flaw in the "Trustless" economy.
+### 2.1 The Core Components
+The system is composed of three distinct layers:
 
-**Talos** breaks this paradigm. We introduce the **Smart Vault Architecture**, separating *Ownership* from *Execution*.
-You hold the keys. The Agent holds the trigger. 
+1.  **On-Chain Protocol (Sui Move)**:
+    *   **Vault Object**: Holds assets (SUI, USDC, CETUS).
+    *   **OwnerCap**: Held by User. Allows withdrawals and freezing.
+    *   **AgentCap**: Held by Worker. Allows *only* flash loan initialization.
+    *   **SubscriptionRegistry**: Manages access control via tiered monthly subscriptions (paid in SUI).
 
-Welcome to the future of **AgentFi**, where AI strategies run 24/7 on high-performance rails without ever touching your seed phrase.
+2.  **Execution Worker (Node.js/TypeScript)**:
+    *   Listens for `AgentCap` objects owned by the agent wallet.
+    *   Calculates arbitrage/optimization paths off-chain.
+    *   Constructs **Programmable Transaction Blocks (PTBs)** to execute strategies atomically.
+    *   **Proof of Life (Testnet)**: Simulates complex DeFi routing via split/merge operations to prove execution capability without liquidity.
 
----
-
-## 🛠️ Technology Stack
-
-Talos is built with a hyper-modern stack designed for **10ms latency** and **Atomic Safety**.
-
-### **Core Protocol (The Brain)**
-| Tech | Role | Description |
-| :--- | :--- | :--- |
-| <img src="https://cryptologos.cc/logos/sui-sui-logo.png" width="20"/> **Sui Move** | **Smart Contracts** | `Hot Potato` pattern for atomic flash loans. Object-centric security. |
-| <img src="https://cdn.iconscout.com/icon/free/png-256/node-js-1174925.png" width="20"/> **Node.js** | **Agent Worker** | Off-chain strategy runtime. Executes logic via `AgentCap`. |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" width="20"/> **Cetus SDK** | **Aggregator** | Deep liquidity routing and flash swap execution. |
-
-### **Frontend Experience (The Glass)**
-| Tech | Role | Description |
-| :--- | :--- | :--- |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/2560px-Nextjs-logo.svg.png" width="20"/> **Next.js 15** | **Framework** | Server-side rendering, App Router, and dynamic optimization. |
-| <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" width="20"/> **TailwindCSS** | **Styling** | "Neural Glass" design system with obsidian/neon aesthetics. |
-| <img src="https://cdn.worldvectorlogo.com/logos/framer-motion.svg" width="20"/> **Framer Motion** | **Animation** | Fluid transitions, page exits, and heavy micro-interactions. |
-| <img src="https://radix-ui.com/social/logo.png" width="20"/> **Radix UI** | **Accessibility** | Accessible modal primitives, tooltips, and dialogs. |
-| <img src="https://recharts.org/static/logo.png" width="20"/> **Recharts** | **Analytics** | Real-time TVL and APY visualization. |
+3.  **Frontend Interface (Next.js 16)**:
+    *   **Dashboard**: Real-time monitoring of Vaults.
+    *   **Studio**: No-code strategy configuration.
+    *   **Analytics**: Live indexing of `SubscriptionRegistry` and on-chain activity.
+    *   **Security**: Geo-blocking compliant (OFAC) and wallet-based authentication.
 
 ---
 
-## ⚡ Key Features
+## 3. Smart Contract Mechanics
 
-### 🛡️ **Zero-Trust Security**
-We utilize **Object Capabilities**. The user creates a `Vault` and receives the `OwnerCap`. The worker receives an `AgentCap` which *only* permits the `borrow_flash` method. The agent can **never** withdraw funds.
+### 3.1 The "Hot Potato" Flash Loan Pattern
+To ensure funds are **never** stolen by the agent, Talos enforces an atomic borrow/repay cycle within a single transaction.
 
-### ⚛️ **Atomic Flash Execution**
-Using Sui's **Programmable Transaction Blocks (PTBs)**, we bundle:
-1.  **Borrow** (Flash Loan)
-2.  **Execute** (Arbitrage/Swap)
-3.  **Repay** (Return Loan + Profit)
-...into a single transaction. If the strategy produces a loss, the entire transaction reverts. **Zero Risk.**
+```move
+// 1. Borrow (Agent Action)
+public fun borrow_flash<T>(...): (Coin<T>, FlashReceipt) {
+    // ... Checks Subscription ...
+    // ... Emits FlashReceipt (Hot Potato) ...
+}
 
-### 🧠 **Agent Marketplace**
-Browse, verify, and deploy pre-trained strategies like *Delta Neutral Yield* or *Cetus Arbitrage* directly from the dashboard.
+// 2. Execution (In PTB)
+// ... Swap SUI -> USDC -> SUI (Arbitrage) ...
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-*   Node.js v18+
-*   Sui CLI installed
-*   Sui Wallet (Extension)
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/Eras256/Talos.git
-cd Talos
-
-# 2. Install dependencies
-pnpm install
-
-# 3. Configure Environment
-cp .env.example .env
-nano .env # Set SUI_NODE_URL and PRIVATE_KEYS
+// 3. Repay (Mandatory)
+public fun repay_flash<T>(..., receipt: FlashReceipt) {
+    // ... Must return >= amount borrowed ...
+    // ... Destroys FlashReceipt ...
+}
 ```
+If the Agent attempts to transfer funds out without calling `repay_flash`, the transaction fails because `FlashReceipt` cannot be dropped.
 
-### Deployment
-
-```bash
-# Deploy Move Contracts & Sync Addresses
-./publish.sh
-```
-
-### Run Local
-
-```bash
-# Start Frontend
-cd frontend && pnpm dev
-
-# Start Agent Worker
-cd backend && npx ts-node src/worker.ts
-```
+### 3.2 Subscription Gating
+Access is gated by a `SubscriptionRegistry`.
+*   Users subscribe by paying SUI.
+*   The contract mints a dynamic field attached to the Registry.
+*   `borrow_flash` checks `clock` vs. `expiration_ms` before releasing funds.
 
 ---
 
-## 👥 The Team
+## 4. Off-Chain Worker Logic
 
-<div align="center">
+### 4.1 "Proof of Life" (Testnet Mode)
+Since Testnet liquidity is insufficient for real profitable arbitrage, the Worker implements a **Proof of Life** algorithm to demonstrate capability:
 
-| **Vaiosx** | **M0nsxx** |
-| :---: | :---: |
-| <img src="https://avatars.githubusercontent.com/u/0?v=4" width="100" style="border-radius:50%"/> | <img src="https://avatars.githubusercontent.com/u/0?v=4" width="100" style="border-radius:50%"/> |
-| *Lead Architect* | *Protocol Engineer* |
-| 💻 Full Stack | ⛓️ Smart Contracts |
+1.  **Poll**: Detects assigned Vaults via `getOwnedObjects`.
+2.  **Analyze**: Determines the asset available (e.g., SUI).
+3.  **Construct PTB**:
+    *   `borrow_flash(1 SUI)`
+    *   `splitCoins(0.1 SUI)` -> Simulates Swap Input.
+    *   `mergeCoins` -> Simulates Swap Output.
+    *   `repay_flash(1 SUI)`
+4.  **Execute**: Submits tx via `signAndExecuteTransaction`.
 
-</div>
+### 4.2 Mainnet Aggregation
+In Mainnet mode, the Worker connects to **Cetus Aggregator** and **DeepBook**:
+*   Fetches quotes via API.
+*   Constructs PTB with `cetus::swap` and `deepbook::place_limit_order`.
+*   Includes `min_amount_out` checks to prevent slippage loss.
+
+---
+
+## 5. Frontend & Data Layer
+
+### 5.1 Real-Time Analytics
+Instead of hardcoded mock data, the frontend now performs dynamic fetching:
+*   **Total Vaults**: Queried directly from `SubscriptionRegistry` on-chain state.
+*   **TVL**: Estimated based on live price feeds and vault balances.
+*   **Price Ticker**: SUI/USD price fetched via CoinGecko API (`SuiPriceTicker.tsx`).
+
+### 5.2 Deployment Pipeline
+*   **Hosting**: Vercel (Production optimized).
+*   **CI/CD**: Automatic builds via `git push`.
+*   **Security**: Environment variables (`NEXT_PUBLIC_NETWORK`) partition Testnet/Mainnet configs.
+
+---
+
+## 6. Security Audit Notes
+*   **Non-Custodial**: Agent cannot withdraw.
+*   **Atomic**: Loss-making trades revert.
+*   **Frozen State**: User can call `emergency_shutdown` to revoke Agent access instantly.
+*   **Access Control**: Only `OwnerCap` can add/remove assets.
 
 ---
 
 <div align="center">
-  <small>© 2026 Talos Systems. All Rights Reserved.</small>
+    <i>Talos Protocol - Defining the Standard for Move-based AgentFi</i>
 </div>
