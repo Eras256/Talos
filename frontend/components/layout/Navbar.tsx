@@ -6,6 +6,7 @@ import { Menu, X, Activity, Box, Terminal as TerminalIcon, DollarSign, Book } fr
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SuiPriceTicker from "@/components/ui/SuiPriceTicker";
+import WalletConnect from "@/components/layout/WalletConnect";
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +40,7 @@ export function Navbar() {
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
                         <SuiPriceTicker />
-                        <ConnectButton className="!bg-sui-blue !hover:bg-sui-ocean !text-white !font-bold !font-mono !rounded-md" />
+                        <WalletConnect />
                     </div>
 
                     {/* Mobile Toggle */}
